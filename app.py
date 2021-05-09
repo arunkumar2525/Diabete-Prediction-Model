@@ -9,14 +9,14 @@ fileName="Diabete_Model_Prediction.pkl"
 Diabete_Classifier=pickle.load(open(fileName,'rb'))
 
 # Creating the object of the api constructor
-application=Flask(__name__)
+app=Flask(__name__)
 
 # Calling the default HomePage Pages Opens
-@application.route('/')
+@app.route('/')
 def homePage():
     return render_template('HomePage.html')
 
-@application.route('/predict',method=['POST'])
+@app.route('/predict',method=['POST'])
 def model_prediction():
     if request.method=='POST':
         preg=int(request.form['pregnancies'])
@@ -34,5 +34,5 @@ def model_prediction():
         return render_template('ResultPage.html',prediction=my_prediction)
 
 if __name__=="__main__":
-    application.run(debug=True)
+    app.run(debug=True)
     
